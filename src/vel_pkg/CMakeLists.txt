@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
-project(topic_pkg)
+project(vel_pkg)
 
+# Config CPP CMAKE
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -14,39 +16,16 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
-# add cpp files to executables
-add_executable(publisher_node src/publisher_node.cpp)
-# ament dependencies to executables
-ament_target_dependencies(publisher_node "rclcpp" "std_msgs")
+add_executable(vel_node src/vel_node.cpp)
+ament_target_dependencies(vel_node "rclcpp" "geometry_msgs")
 
-add_executable(subscriber_node src/subscriber_node.cpp)
-ament_target_dependencies(subscriber_node "rclcpp" "std_msgs")
-
-add_executable(publisher_class src/publisher_class.cpp)
-ament_target_dependencies(publisher_class "rclcpp" "std_msgs")
-
-add_executable(subscriber_class src/subscriber_class.cpp)
-ament_target_dependencies(subscriber_class "rclcpp" "std_msgs")
-
-# install built output
 install(
   TARGETS
-    publisher_node
-    subscriber_node
-    publisher_class
-    subscriber_class
+    vel_node
   DESTINATION
     lib/${PROJECT_NAME}
-)
-
-# install launch file
-install (
-  DIRECTORY
-    launch
-  DESTINATION
-    share/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
