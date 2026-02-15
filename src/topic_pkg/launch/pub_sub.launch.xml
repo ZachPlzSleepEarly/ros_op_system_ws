@@ -1,0 +1,4 @@
+<launch>
+<node pkg="topic_pkg" exec="publisher_class" name="publisher_class" />
+<node pkg="topic_pkg" exec="subscriber_class" name="subscriber_class" />
+</launch>
