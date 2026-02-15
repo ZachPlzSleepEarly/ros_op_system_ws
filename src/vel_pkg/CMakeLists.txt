@@ -21,9 +21,13 @@ find_package(geometry_msgs REQUIRED)
 add_executable(vel_node src/vel_node.cpp)
 ament_target_dependencies(vel_node "rclcpp" "geometry_msgs")
 
+add_executable(vel_class src/vel_class.cpp)
+ament_target_dependencies(vel_class "rclcpp" "geometry_msgs")
+
 install(
   TARGETS
     vel_node
+    vel_class
   DESTINATION
     lib/${PROJECT_NAME}
 )
