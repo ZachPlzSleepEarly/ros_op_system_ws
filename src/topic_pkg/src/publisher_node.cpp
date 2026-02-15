@@ -10,7 +10,7 @@ int main(int argc, char * argv[])
     rclcpp::init(argc, argv);
 
     auto node = std::make_shared<rclcpp::Node>(NODE_NAME);
-    auto publisher = node->create_publisher<std_msgs::msg::String>(NODE_NAME, QOS);
+    auto publisher = node->create_publisher<std_msgs::msg::String>(TOPIC_NAME, QOS);
 
     std_msgs::msg::String message;
     message.data = "Hello World";
