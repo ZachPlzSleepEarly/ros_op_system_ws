@@ -10,22 +10,22 @@ ContinuationIndentWidth: 4
 # Line length
 ColumnLimit: 120
 
-# Braces: functions on new line, control statements on same line
+# Access specifier: public/private 顶格
+AccessModifierOffset: -4
+IndentAccessModifiers: false
+
+# Braces
 BreakBeforeBraces: Custom
 BraceWrapping:
   AfterFunction: true
-  AfterClass: true
-  AfterStruct: true
-  AfterEnum: true
-  AfterNamespace: true
+  AfterClass: false
+  AfterStruct: false
+  AfterEnum: false
+  AfterNamespace: false
 
-  # if/for/while/switch: keep "{"
   AfterControlStatement: Never
-
-  # try/catch: clang-format has NO AfterTry; but it CAN do "} catch (...) {"
   BeforeCatch: false
   BeforeElse: false
-
   IndentBraces: false
 
 # Control statements
