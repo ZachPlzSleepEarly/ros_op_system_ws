@@ -25,11 +25,15 @@ ament_target_dependencies(subscriber_node "rclcpp" "std_msgs")
 add_executable(publisher_class src/publisher_class.cpp)
 ament_target_dependencies(publisher_class "rclcpp" "std_msgs")
 
+add_executable(subscriber_class src/subscriber_class.cpp)
+ament_target_dependencies(subscriber_class "rclcpp" "std_msgs")
+
 install(
   TARGETS
     publisher_node
     subscriber_node
     publisher_class
+    subscriber_class
   DESTINATION
     lib/${PROJECT_NAME}
 )
