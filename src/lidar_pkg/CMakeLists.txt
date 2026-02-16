@@ -25,11 +25,15 @@ ament_target_dependencies(lidar_data_class "rclcpp" "sensor_msgs")
 add_executable(lidar_avoidance src/lidar_avoidance.cpp)
 ament_target_dependencies(lidar_avoidance "rclcpp" "geometry_msgs" "sensor_msgs")
 
+add_executable(lidar_avoidance_class src/lidar_avoidance_class.cpp)
+ament_target_dependencies(lidar_avoidance_class "rclcpp" "geometry_msgs" "sensor_msgs")
+
 install(
   TARGETS
     lidar_data
     lidar_data_class
     lidar_avoidance
+    lidar_avoidance_class
   DESTINATION
     lib/${PROJECT_NAME}
 )
