@@ -19,9 +19,13 @@ find_package(sensor_msgs REQUIRED)
 add_executable(lidar_data src/lidar_data.cpp)
 ament_target_dependencies(lidar_data "rclcpp" "sensor_msgs")
 
+add_executable(lidar_data_class src/lidar_data_class.cpp)
+ament_target_dependencies(lidar_data_class "rclcpp" "sensor_msgs")
+
 install(
   TARGETS
     lidar_data
+    lidar_data_class
   DESTINATION
     lib/${PROJECT_NAME}
 )
