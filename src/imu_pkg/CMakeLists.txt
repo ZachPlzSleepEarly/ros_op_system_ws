@@ -20,9 +20,13 @@ find_package(tf2 REQUIRED)
 add_executable(imu_data src/imu_data.cpp)
 ament_target_dependencies(imu_data "rclcpp" "sensor_msgs" "tf2")
 
+add_executable(imu_data_class src/imu_data_class.cpp)
+ament_target_dependencies(imu_data_class "rclcpp" "sensor_msgs" "tf2")
+
 install(
   TARGETS
     imu_data
+    imu_data_class
   DESTINATION
     lib/${PROJECT_NAME}
 )
