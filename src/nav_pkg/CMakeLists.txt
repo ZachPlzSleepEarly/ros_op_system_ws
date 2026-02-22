@@ -18,9 +18,13 @@ find_package(rclcpp REQUIRED)
 add_executable(waypoint_navigation src/waypoint_navigation.cpp)
 ament_target_dependencies(waypoint_navigation "rclcpp" "std_msgs")
 
+add_executable(waypoint_navigation_class src/waypoint_navigation_class)
+ament_target_dependencies(waypoint_navigation_class "rclcpp" "std_msgs")
+
 install(
   TARGETS
     waypoint_navigation
+    waypoint_navigation_class
   DESTINATION
     lib/${PROJECT_NAME}
 )

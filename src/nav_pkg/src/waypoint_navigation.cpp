@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
     rclcpp::sleep_for(std::chrono::milliseconds(1000));
 
     std_msgs::msg::String waypoint_msg;
-    waypoint_msg.data = "1";
+    waypoint_msg.data = "2";
     navigation_pub->publish(waypoint_msg);
 
     rclcpp::spin(node);
