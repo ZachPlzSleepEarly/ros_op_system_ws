@@ -21,9 +21,13 @@ find_package(OpenCV REQUIRED)
 add_executable(cv_image src/cv_image.cpp)
 ament_target_dependencies(cv_image "rclcpp" "sensor_msgs" "cv_bridge" "OpenCV")
 
+add_executable(cv_image_class src/cv_image_class.cpp)
+ament_target_dependencies(cv_image_class "rclcpp" "sensor_msgs" "cv_bridge" "OpenCV")
+
 install(
   TARGETS
     cv_image
+    cv_image_class
   DESTINATION
     lib/${PROJECT_NAME}
 )
