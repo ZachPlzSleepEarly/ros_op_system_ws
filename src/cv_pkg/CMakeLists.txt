@@ -15,6 +15,7 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(OpenCV REQUIRED)
 
@@ -25,13 +26,17 @@ add_executable(cv_image_class src/cv_image_class.cpp)
 ament_target_dependencies(cv_image_class "rclcpp" "sensor_msgs" "cv_bridge" "OpenCV")
 
 add_executable(cv_hsv src/cv_hsv.cpp)
-ament_target_dependencies(cv_hsv "rclcpp" "cv_bridge" "OpenCV" "rclcpp" "sensor_msgs")
+ament_target_dependencies(cv_hsv "rclcpp" "cv_bridge" "OpenCV" "sensor_msgs")
+
+add_executable(cv_follow src/cv_follow.cpp)
+ament_target_dependencies(cv_follow "rclcpp" "cv_bridge" "OpenCV" "sensor_msgs" "geometry_msgs")
 
 install(
   TARGETS
     cv_image
     cv_image_class
     cv_hsv
+    cv_follow
   DESTINATION
     lib/${PROJECT_NAME}
 )
