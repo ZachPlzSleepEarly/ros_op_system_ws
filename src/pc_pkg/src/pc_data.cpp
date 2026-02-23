@@ -3,14 +3,16 @@
 #include <sensor_msgs/msg/point_cloud2.hpp>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
+#include <pcl/io/pcd_io.h>
 
 const std::string NODE_NAME = "point_cloud_node";
 const std::string PC_TOPIC_NAME = "/kinect2/sd/points";
+const std::string PCD_PATH = "/home/zach-ubuntu/Desktop/desk.pcd";
 const int QOS1 = 1;
 
 class PointCloudNode : public rclcpp::Node {
 public:
-    PointCloudNode() : rclcpp::Node(NODE_NAME)
+    PointCloudNode() : rclcpp::Node(NODE_NAME), is_pcd_saved_(false)
     {
         pc_sub_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
             PC_TOPIC_NAME, QOS1, std::bind(&PointCloudNode::PointCloudCallback, this, std::placeholders::_1));
@@ -21,17 +23,15 @@ private:
     {
         pcl::PointCloud<pcl::PointXYZ> pointCloudIn;
         pcl::fromROSMsg(*msg, pointCloudIn);
-        int cloudSize = pointCloudIn.points.size();
-        for (int i = 0; i < cloudSize; ++i) {
-            RCLCPP_INFO(this->get_logger(), "[i=%d] (%.2f, %.2f, %.2f)", 
-                i, 
-                pointCloudIn.points[i].x,
-                pointCloudIn.points[i].y, 
-                pointCloudIn.points[i].z);
+        if (!is_pcd_saved_) {
+            int result = pcl::io::savePCDFile(PCD_PATH, pointCloudIn, true);
+            RCLCPP_INFO(this->get_logger(), "PCD saved %s", (result == 0) ? "successfully" : "failure");
+            is_pcd_saved_ = true;
         }
     }
 
     rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr pc_sub_;
+    bool is_pcd_saved_;
 };
 
 int main(int argc, char* argv[])
