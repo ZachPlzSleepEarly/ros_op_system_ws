@@ -31,12 +31,16 @@ ament_target_dependencies(cv_hsv "rclcpp" "cv_bridge" "OpenCV" "sensor_msgs")
 add_executable(cv_follow src/cv_follow.cpp)
 ament_target_dependencies(cv_follow "rclcpp" "cv_bridge" "OpenCV" "sensor_msgs" "geometry_msgs")
 
+add_executable(cv_face_detect src/cv_face_detect.cpp)
+ament_target_dependencies(cv_face_detect "rclcpp" "sensor_msgs" "cv_bridge" "OpenCV")
+
 install(
   TARGETS
     cv_image
     cv_image_class
     cv_hsv
     cv_follow
+    cv_face_detect
   DESTINATION
     lib/${PROJECT_NAME}
 )
