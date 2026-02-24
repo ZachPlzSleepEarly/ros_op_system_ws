@@ -21,9 +21,13 @@ find_package(pcl_ros REQUIRED)
 add_executable(pc_data src/pc_data.cpp)
 ament_target_dependencies(pc_data "rclcpp" "sensor_msgs" "pcl_conversions" "pcl_ros")
 
+add_executable(pc_objects src/pc_objects.cpp)
+ament_target_dependencies(pc_objects "rclcpp" "sensor_msgs" "pcl_ros" "pcl_conversions")
+
 install(
   TARGETS
     pc_data
+    pc_objects
   DESTINATION
     lib/${PROJECT_NAME}
 )
