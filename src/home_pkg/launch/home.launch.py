@@ -5,6 +5,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
+
 def generate_launch_description():
     launch_file_dir = os.path.join(get_package_share_directory('wpr_simulation2'), 'launch')
     home_mani_cmd = IncludeLaunchDescription(
