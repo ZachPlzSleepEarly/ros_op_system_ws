@@ -15,13 +15,20 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(wpr_simulation2 REQUIRED)
+find_package(std_msgs REQUIRED)
 
 add_executable(mani_ctrl src/mani_ctrl.cpp)
 ament_target_dependencies(mani_ctrl "rclcpp" "sensor_msgs")
 
+add_executable(grab_object src/grab_object.cpp)
+ament_target_dependencies(grab_object "rclcpp" "std_msgs" "geometry_msgs" "wpr_simulation2" "sensor_msgs")
+
 install(
   TARGETS
     mani_ctrl
+    grab_object
   DESTINATION
     lib/${PROJECT_NAME}
 )
